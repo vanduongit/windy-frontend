@@ -1,0 +1,24 @@
+<div class="lead">List Orders</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Time</th>
+      <th scope="col">ID Customer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td scope="row">
+        <a routerLink="/orders/detail/{{order.id}}">{{order.id}}</a>
+      </td>
+      <td>
+        {{order.timestamp*1000 | date:'full'}}
+      </td>
+      <td>
+        {{order.idCust}}
+      </td>
+    </tr>
+  </tbody>
+
+</table>

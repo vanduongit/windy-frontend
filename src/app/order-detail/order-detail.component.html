@@ -1,0 +1,25 @@
+<button class="btn" (click)="goBack()">go back</button>
+
+<div class="lead">Order detail</div>
+<div *ngIf="order">
+  <div><span>ID: </span> {{order.id}}</div>
+  <div><span>Time: </span> {{order.timestamp * 1000 | date:'full'}} </div>
+  <div><span>ID Customer: </span> {{order.idCust}}</div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let orderDetail of order.orderDetails">
+      <td scope="row">{{orderDetail.idProduct}}</td>
+      <td>{{orderDetail.price | currency}}</td>
+      <td>{{orderDetail.quantity}}</td>
+    </tr>
+  </tbody>
+</table>

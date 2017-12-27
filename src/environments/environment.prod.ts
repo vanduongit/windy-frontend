@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  host:"http://windy.com:9000"
+
 };

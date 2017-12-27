@@ -1,0 +1,40 @@
+<div class="lead">List Books</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">UUID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Author</th>
+    <th scope="col">Published Date</th>
+    <th scope="col">Created At</th>
+    <th scope="col">Count</th>
+    <th scope="col">Active</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let book of books">
+    <td scope="row">
+      <a routerLink="/books/detail/{{book.uuid}}">{{book.uuid}}</a>
+    </td>
+    <td>
+      {{book.title}}
+    </td>
+    <td>
+      {{book.author}}
+    </td>
+    <td>
+      {{book.publishedDate*1000 | date:'full'}}
+    </td>
+    <td>
+      {{book.createdAt*1000 | date:'full'}}
+    </td>
+    <td>
+      {{book.count}}
+    </td>
+    <td>
+      {{{true:"Active",false:"Inactive"}[book.active]}}
+    </td>
+  </tr>
+  </tbody>
+
+</table>
