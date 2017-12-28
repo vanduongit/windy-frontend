@@ -1,3 +1,5 @@
+<app-book-create (messageEvent)="receiveMessage($event)"></app-book-create>
+
 <div class="lead">List Books</div>
 <table class="table">
   <thead>
@@ -9,6 +11,7 @@
     <th scope="col">Created At</th>
     <th scope="col">Count</th>
     <th scope="col">Active</th>
+    <th scope="col">Delete</th>
   </tr>
   </thead>
   <tbody>
@@ -23,16 +26,19 @@
       {{book.author}}
     </td>
     <td>
-      {{book.publishedDate*1000 | date:'full'}}
+      {{book.publishedDate | date:'medium'}}
     </td>
     <td>
-      {{book.createdAt*1000 | date:'full'}}
+      {{book.createdAt | date:'medium'}}
     </td>
     <td>
       {{book.count}}
     </td>
     <td>
       {{{true:"Active",false:"Inactive"}[book.active]}}
+    </td>
+    <td>
+      <button class="btn btn-danger btn-small" (click)="delete(book.uuid)"><span class="fa fa-trash-o"></span></button>
     </td>
   </tr>
   </tbody>

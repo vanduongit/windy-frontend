@@ -1,3 +1,52 @@
-<p>
-  book-detail works!
-</p>
+<button class="btn btn-link" (click)="goBack()">go back</button>
+
+<div class="lead">Book detail</div>
+<div *ngIf="book">
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">UUID: </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        {{book.uuid}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Title:  </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <input [(ngModel)]="book.title" placeholder="title"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Author:  </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <input [(ngModel)]="book.author" placeholder="author"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Published Date: </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      {{book.publishedDate | date:'medium'}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Created: </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      {{book.createdAt | date:'medium'}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Count: </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      {{book.count}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Active: </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <input type="checkbox" [(ngModel)]="book.active"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+
+</div>

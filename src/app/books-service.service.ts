@@ -15,8 +15,6 @@ export class BooksServiceService {
   constructor(private http:HttpClient) { }
 
   get():Observable<Book[]>{
-    console.log("fetch books");
-    console.log(this.url);
     return this.http.get<Book[]>(this.url).pipe(
       tap(books => this.log(`fetched books`)),
       catchError(this.handleError('getBooks', []))
@@ -24,8 +22,44 @@ export class BooksServiceService {
   }
 
   create(book:Book): Observable<any>{
-    console.log(`update book ${book.title}`);
-    return this.http.post(this.url,book);
+    return this.http.post(this.url,book).pipe(
+      tap(res => this.log(`new book ${book.title}`)),
+      map(this.extractData),
+      catchError(this.handleError(`error update book ${book.title}`,[]))
+    );
+  }
+
+  getBook(uuid): Observable<any>{
+    return this.http.get<any>(`${this.url}\\${uuid}`).pipe(
+      tap(data => console.log(data)),
+      tap(data => this.log(`fetched book ${uuid}`)),
+      map(this.extractData),
+      tap(data => console.log(data)),
+      catchError(this.handleError(`get book ${uuid}`,[]))
+    )
+  }
+
+  updateBook(book:Book):Observable<any>{
+    return this.http.put(this.url,book).pipe(
+      tap(res => this.log(`update book ${book.uuid}`)),
+      map(this.extractData),
+      catchError(this.handleError(`error update book ${book.uuid}`,[]))
+    );
+  }
+
+  deleteBook(uuid:String):Observable<any>{
+    return this.http.delete(`${this.url}\\${uuid}`).pipe(
+      tap(res => this.log(`delete book ${uuid}`)),
+      map(this.extractData),
+      catchError(this.handleError(`error delete book ${uuid}`,[])));
+  }
+
+  private extractData(res: any) {
+    console.log(res);
+    if (res.status < 200 || res.status >= 300) {
+      throw new Error('Bad response status: ' + res.status);
+    }
+    return res.body.data;
   }
 
   private log(msg:String):void{

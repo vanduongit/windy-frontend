@@ -27,5 +27,19 @@ export class BooksComponent implements OnInit {
     })
   }
 
+  delete(uuid:String):void{
+    this.booksService.deleteBook(uuid).subscribe(_ => {
+      this.books = this.books.filter(b => b.uuid != uuid);
+    });
+  }
+
+  message: String;
+
+  receiveMessage($event){
+    if($event == "reload"){
+      this.getBooks();
+    }
+  }
+
 
 }

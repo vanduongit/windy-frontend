@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import {HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 
@@ -17,6 +18,7 @@ import { BookCreateComponent } from './book-create/book-create.component';
 import { MagazinesComponent } from './magazines/magazines.component';
 import { MagazinesDetailComponent } from './magazines-detail/magazines-detail.component';
 import { MagazinesCreateComponent } from './magazines-create/magazines-create.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { MagazinesCreateComponent } from './magazines-create/magazines-create.co
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -41,7 +44,7 @@ import { MagazinesCreateComponent } from './magazines-create/magazines-create.co
 
     AppRoutingModule
   ],
-  providers: [BooksServiceService, OrdersService],
+  providers: [BooksServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
