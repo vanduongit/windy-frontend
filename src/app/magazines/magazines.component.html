@@ -1,3 +1,46 @@
-<p>
-  magazines works!
-</p>
+<app-magazines-create (messageEvent)="receiveMessage($event)"></app-magazines-create>
+
+<div class="lead">List magazines</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">UUID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Author</th>
+    <th scope="col">Published Date</th>
+    <th scope="col">Created At</th>
+    <th scope="col">Count</th>
+    <th scope="col">Active</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let magazine of magazines">
+    <td scope="row">
+      <a routerLink="/magazines/detail/{{magazine.uuid}}">{{magazine.uuid}}</a>
+    </td>
+    <td>
+      {{magazine.title}}
+    </td>
+    <td>
+      {{magazine.author}}
+    </td>
+    <td>
+      {{magazine.publishedDate | date:'medium'}}
+    </td>
+    <td>
+      {{magazine.createdAt | date:'medium'}}
+    </td>
+    <td>
+      {{magazine.count}}
+    </td>
+    <td>
+      {{{true:"Active",false:"Inactive"}[magazine.active]}}
+    </td>
+    <td>
+      <button class="btn btn-danger btn-small" (click)="delete(magazine.uuid)"><span class="fa fa-trash-o"></span></button>
+    </td>
+  </tr>
+  </tbody>
+
+</table>

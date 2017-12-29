@@ -19,6 +19,7 @@ import { MagazinesComponent } from './magazines/magazines.component';
 import { MagazinesDetailComponent } from './magazines-detail/magazines-detail.component';
 import { MagazinesCreateComponent } from './magazines-create/magazines-create.component';
 import {FormsModule} from "@angular/forms";
+import {MagazinesService} from "./magazines.service";
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import {FormsModule} from "@angular/forms";
 
     AppRoutingModule
   ],
-  providers: [BooksServiceService],
+  providers: [BooksServiceService, MagazinesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

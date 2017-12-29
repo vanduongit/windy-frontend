@@ -17,7 +17,6 @@ export class BooksComponent implements OnInit {
   constructor(private booksService:BooksServiceService) { }
 
   ngOnInit() {
-    this.url = environment.host;
     this.getBooks();
   }
 
@@ -33,7 +32,7 @@ export class BooksComponent implements OnInit {
     });
   }
 
-  message: String;
+
 
   receiveMessage($event){
     if($event == "reload"){
